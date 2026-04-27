@@ -10,6 +10,7 @@
 - 계획 생성
 - 격리 작업 공간 생성
 - 검증 실행
+- PR 생성
 - 병합 실행
 - 저장소 퍼블리시 및 복구
 
@@ -22,10 +23,11 @@
 3. 계획 생성
 4. 워크트리 생성
 5. 구현 및 검증
-6. 병합
-7. 계획 완료 처리
-8. 작업 요청서 완료 처리
-9. 저장소 퍼블리시 또는 복구
+6. PR 생성
+7. 병합
+8. 계획 완료 처리
+9. 작업 요청서 완료 처리
+10. 저장소 퍼블리시 또는 복구
 
 ## 명령 목록
 
@@ -93,6 +95,19 @@ scripts/verify-task.sh
 - 현재는 하네스 저장소 기본 구조만 점검합니다.
 - 앱 코드가 생기면 린트, 테스트, 빌드 명령을 여기에 추가합니다.
 
+### PR 생성
+
+```bash
+scripts/create-pr.sh "chore: add repository publish recovery workflow" main docs/templates/pr-template.md
+```
+
+설명:
+
+- 작업 브랜치에서만 실행합니다.
+- 워킹트리가 깨끗해야 합니다.
+- 현재 브랜치가 원격에 push 되어 있어야 합니다.
+- 기본 PR 본문 템플릿은 `docs/templates/pr-template.md`입니다.
+
 ### 병합
 
 ```bash
@@ -152,5 +167,4 @@ scripts/publish-repo.sh indextrown/Harness private
 ## 나중에 추가할 만한 명령
 
 - 커밋 메시지 규칙 검사
-- PR 생성 스크립트
 - 스크린샷과 로그 아카이브 스크립트
