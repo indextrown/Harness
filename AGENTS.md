@@ -97,7 +97,8 @@
 4. 가능하면 메인 대신 워크트리 또는 작업 브랜치를 준비합니다.
 5. 구현 전에 검증 기준과 로그 산출물을 정합니다.
 6. 구현 후 `scripts/verify-task.sh` 같은 검증 명령을 실행합니다.
-7. 병합 후 계획 파일과 작업 요청서를 완료 상태로 정리합니다.
+7. PR 병합 후 원격 및 로컬 작업 브랜치를 정리하고 항상 `main`으로 돌아옵니다.
+8. 병합 후 계획 파일과 작업 요청서를 완료 상태로 정리합니다.
 
 권장 명령:
 
@@ -107,11 +108,18 @@
 - 작업 브랜치 확인: `scripts/check-worktree.sh`
 - 기본 검증: `scripts/verify-task.sh`
 - PR 생성: `scripts/create-pr.sh <title> [base-branch] [body-file]`
-- PR 병합: `scripts/merge-pr.sh <pr-number|pr-url|branch> [merge|squash|rebase]`
+- PR 병합: `scripts/merge-pr.sh <pr-number|pr-url|branch> [merge|squash|rebase] [base-branch]`
 - 계획 완료 처리: `scripts/complete-plan.sh <active-plan-path>`
 - 작업 요청서 완료 처리: `scripts/complete-task-request.sh <active-task-request-path>`
 - 훅 설치: `scripts/install-hooks.sh`
 - 저장소 퍼블리시 또는 복구: `scripts/publish-repo.sh <owner/repo|repo> [private|public]`
+
+브랜치 정리 규칙:
+
+- PR 병합이 끝나면 원격 작업 브랜치는 삭제합니다.
+- 로컬 작업 브랜치도 삭제합니다.
+- 병합 후 로컬 작업 위치는 항상 `main` 브랜치로 되돌립니다.
+- 다음 작업은 새 브랜치 또는 워크트리에서 다시 시작합니다.
 
 문서화 규칙:
 

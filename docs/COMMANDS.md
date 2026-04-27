@@ -112,7 +112,7 @@ scripts/create-pr.sh "chore: add repository publish recovery workflow" main docs
 ### PR 병합
 
 ```bash
-scripts/merge-pr.sh chore/repo-bootstrap-recovery squash
+scripts/merge-pr.sh chore/repo-bootstrap-recovery squash main
 ```
 
 설명:
@@ -120,6 +120,8 @@ scripts/merge-pr.sh chore/repo-bootstrap-recovery squash
 - GitHub PR을 `merge`, `squash`, `rebase` 중 하나로 병합합니다.
 - 기본값은 `squash`입니다.
 - 병합 후 원격 브랜치를 삭제합니다.
+- 이어서 로컬에서 `main`으로 자동 이동합니다.
+- 기존 작업 브랜치는 로컬에서도 자동 삭제합니다.
 
 ### 로컬 병합
 
