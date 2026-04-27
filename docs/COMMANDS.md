@@ -1,0 +1,142 @@
+# Commands
+
+이 문서는 하네스 워크플로를 명령어 수준으로 정리합니다.
+
+## 핵심 생각
+
+좋은 하네스는 규칙을 문서에만 두지 않습니다.
+
+- 이슈 생성
+- 계획 생성
+- 격리 작업 공간 생성
+- 검증 실행
+- 병합 실행
+
+위 흐름을 명령으로 고정해 두면, 에이전트와 사람이 같은 루틴을 따르기 쉬워집니다.
+
+## 권장 순서
+
+1. 이슈 생성
+2. 작업 요청서 생성
+3. 계획 생성
+4. 워크트리 생성
+5. 구현 및 검증
+6. 병합
+7. 계획 완료 처리
+8. 작업 요청서 완료 처리
+
+## 명령 목록
+
+### 이슈 생성
+
+```bash
+scripts/create-issue.sh "작성자 정보 추가" docs/templates/issue-template.md
+```
+
+설명:
+
+- GitHub CLI `gh`가 설치되어 있어야 합니다.
+- 본문은 템플릿 파일이나 별도 마크다운 파일로 넘깁니다.
+
+### 계획 생성
+
+```bash
+scripts/create-plan.sh 2026-04-28 add-author-field
+```
+
+설명:
+
+- `docs/exec-plans/active/` 아래에 실행 계획 파일을 만듭니다.
+
+### 작업 요청서 생성
+
+```bash
+scripts/create-task-request.sh 2026-04-28 add-author-field
+```
+
+설명:
+
+- `docs/task-requests/active/` 아래에 작업 요청서 파일을 만듭니다.
+- 실행 계획보다 먼저 `무엇을 왜 하는지`를 고정하는 용도입니다.
+
+### 워크트리 생성
+
+```bash
+scripts/create-worktree.sh task/add-author-field ../Harness-add-author-field
+```
+
+설명:
+
+- 메인 작업 공간이 아닌 별도 작업 공간을 만듭니다.
+- 현재 저장소가 Git 저장소여야 합니다.
+
+### 작업 브랜치 확인
+
+```bash
+scripts/check-worktree.sh
+```
+
+설명:
+
+- `main` 또는 `master`에서 직접 작업하는 흐름을 막기 위한 기본 체크입니다.
+
+### 기본 검증
+
+```bash
+scripts/verify-task.sh
+```
+
+설명:
+
+- 현재는 하네스 저장소 기본 구조만 점검합니다.
+- 앱 코드가 생기면 린트, 테스트, 빌드 명령을 여기에 추가합니다.
+
+### 병합
+
+```bash
+scripts/merge-task.sh task/add-author-field main
+```
+
+설명:
+
+- 베이스 브랜치에서 실행해야 합니다.
+- 기본값은 `main`입니다.
+
+### 계획 완료 처리
+
+```bash
+scripts/complete-plan.sh docs/exec-plans/active/2026-04-28-add-author-field.md
+```
+
+설명:
+
+- 활성 계획 파일을 `completed/`로 이동합니다.
+- 완료 후 이력 보존과 재사용을 쉽게 만듭니다.
+
+### 작업 요청서 완료 처리
+
+```bash
+scripts/complete-task-request.sh docs/task-requests/active/2026-04-28-add-author-field.md
+```
+
+설명:
+
+- 활성 작업 요청서를 `completed/`로 이동합니다.
+- 작업 목표와 배경 이력을 보존합니다.
+
+### 훅 설치
+
+```bash
+scripts/install-hooks.sh
+```
+
+설명:
+
+- `.githooks/` 아래 기본 훅을 Git에 연결합니다.
+- 현재는 `pre-commit`에서 메인 브랜치 작업과 기본 검증을 막는 골격입니다.
+
+## 나중에 추가할 만한 명령
+
+- 커밋 메시지 규칙 검사
+- PR 생성 스크립트
+- 스크린샷과 로그 아카이브 스크립트

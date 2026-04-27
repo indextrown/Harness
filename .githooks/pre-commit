@@ -1,0 +1,6 @@
+#!/usr/bin/env sh
+
+set -eu
+
+scripts/check-worktree.sh
+scripts/verify-task.sh
