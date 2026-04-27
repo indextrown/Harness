@@ -1,5 +1,9 @@
 #!/usr/bin/env sh
 
+# 작업 브랜치/워크트리 사용 여부를 검사합니다.
+# 사용법: scripts/check-worktree.sh
+# 예시: scripts/check-worktree.sh
+
 set -eu
 
 if ! command -v git >/dev/null 2>&1; then

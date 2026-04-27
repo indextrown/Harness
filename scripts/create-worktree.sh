@@ -1,5 +1,9 @@
 #!/usr/bin/env sh
 
+# 새 작업 브랜치와 워크트리 작업 공간을 생성합니다.
+# 사용법: scripts/create-worktree.sh <branch-name> <path>
+# 예시: scripts/create-worktree.sh task/add-author-field ../Harness-add-author-field
+
 set -eu
 
 if [ "$#" -lt 2 ]; then

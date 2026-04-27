@@ -1,5 +1,9 @@
 #!/usr/bin/env sh
 
+# 실행 계획 템플릿으로 새 계획 파일을 만듭니다.
+# 사용법: scripts/create-plan.sh <YYYY-MM-DD> <slug>
+# 예시: scripts/create-plan.sh 2026-04-28 add-author-field
+
 set -eu
 
 if [ "$#" -lt 2 ]; then

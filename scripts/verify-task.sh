@@ -1,5 +1,9 @@
 #!/usr/bin/env sh
 
+# 하네스 저장소 기본 구조와 검증 전제 조건을 확인합니다.
+# 사용법: scripts/verify-task.sh
+# 예시: scripts/verify-task.sh
+
 set -eu
 
 echo "[verify] 하네스 기본 검증 시작"

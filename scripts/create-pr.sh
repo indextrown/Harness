@@ -1,5 +1,9 @@
 #!/usr/bin/env sh
 
+# 현재 작업 브랜치로 GitHub PR을 생성합니다.
+# 사용법: scripts/create-pr.sh <title> [base-branch] [body-file]
+# 예시: scripts/create-pr.sh "chore: add repository publish recovery workflow" main docs/templates/pr-template.md
+
 set -eu
 
 usage() {

@@ -1,5 +1,9 @@
 #!/usr/bin/env sh
 
+# 작업 요청서 템플릿으로 새 요청서 파일을 만듭니다.
+# 사용법: scripts/create-task-request.sh <YYYY-MM-DD> <slug>
+# 예시: scripts/create-task-request.sh 2026-04-28 add-author-field
+
 set -eu
 
 if [ "$#" -lt 2 ]; then
