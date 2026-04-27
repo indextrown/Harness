@@ -16,14 +16,15 @@
 10. 말이 아니라 장치로 강제하는 규칙은 `docs/VERIFY_AND_GUARDRAILS.md`를 읽습니다.
 11. 로그와 실행 흔적을 어떻게 남길지는 `docs/VISIBILITY_AND_LOGS.md`를 읽습니다.
 12. 실제 작업 명령은 `docs/COMMANDS.md`를 읽습니다.
-13. 작업이 구현 품질에 영향을 준다면 다음 문서를 확인합니다.
+13. 저장소 퍼블리시와 복구 절차는 `docs/REPOSITORY_BOOTSTRAP.md`를 읽습니다.
+14. 작업이 구현 품질에 영향을 준다면 다음 문서를 확인합니다.
    - `docs/QUALITY_SCORE.md`
    - `docs/RELIABILITY.md`
    - `docs/SECURITY.md`
-14. 작업이 제품 동작에 영향을 준다면 다음 문서를 확인합니다.
+15. 작업이 제품 동작에 영향을 준다면 다음 문서를 확인합니다.
    - `docs/PRODUCT_SENSE.md`
    - `docs/product-specs/index.md`
-15. 작업이 디자인이나 상호작용 패턴을 바꾼다면 다음 문서를 확인합니다.
+16. 작업이 디자인이나 상호작용 패턴을 바꾼다면 다음 문서를 확인합니다.
    - `docs/DESIGN.md`
    - `docs/FRONTEND.md`
 
@@ -41,6 +42,7 @@
 - `docs/PRODUCT_SENSE.md`: 제품 의도와 사용자 관점
 - `docs/PROMPT_CONTEXT_HARNESS.md`: 프롬프트, 컨텍스트, 하네스의 차이
 - `docs/QUALITY_SCORE.md`: 품질 기준과 검증 신호
+- `docs/REPOSITORY_BOOTSTRAP.md`: Git 및 GitHub 퍼블리시, 복구 절차
 - `docs/REFERENCES.md`: 외부 참고 자료 인덱스
 - `docs/RELIABILITY.md`: 신뢰성 요구사항
 - `docs/SECURITY.md`: 보안 기대사항
@@ -105,6 +107,7 @@
 - 계획 완료 처리: `scripts/complete-plan.sh <active-plan-path>`
 - 작업 요청서 완료 처리: `scripts/complete-task-request.sh <active-task-request-path>`
 - 훅 설치: `scripts/install-hooks.sh`
+- 저장소 퍼블리시 또는 복구: `scripts/publish-repo.sh <owner/repo|repo> [private|public]`
 
 문서화 규칙:
 

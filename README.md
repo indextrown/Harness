@@ -62,6 +62,7 @@
 - `docs/WORKTREE_WORKFLOW.md`: 메인 대신 워크트리에서 작업하는 운영 규칙
 - `docs/VERIFY_AND_GUARDRAILS.md`: 말이 아니라 검증과 훅으로 강제하는 규칙
 - `docs/VISIBILITY_AND_LOGS.md`: 로그, 스크린샷, 검증 흔적을 남기는 규약
+- `docs/REPOSITORY_BOOTSTRAP.md`: Git 및 GitHub 레포 생성과 복구 절차
 - `docs/REFERENCES.md`: 외부 참고 자료와 왜 중요한지
 
 ## 권장 작업 흐름
