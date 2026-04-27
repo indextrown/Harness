@@ -43,6 +43,7 @@ scripts/create-issue.sh "작성자 정보 추가" docs/templates/issue-template.
 
 - GitHub CLI `gh`가 설치되어 있어야 합니다.
 - 본문은 템플릿 파일이나 별도 마크다운 파일로 넘깁니다.
+- 템플릿 기본 문구가 그대로 남아 있으면 생성이 실패합니다.
 
 ### 계획 생성
 
@@ -109,6 +110,7 @@ scripts/create-pr.sh "chore: add repository publish recovery workflow" main docs
 - 워킹트리가 깨끗해야 합니다.
 - 현재 브랜치가 원격에 push 되어 있어야 합니다.
 - 기본 PR 본문 템플릿은 `docs/templates/pr-template.md`입니다.
+- 템플릿 기본 문구가 그대로 남아 있으면 생성이 실패합니다.
 - 원격 push 자체는 사용자가 명시적으로 요청했을 때만 수행합니다.
 - 작업 브랜치에서 커밋이 끝났고 원격 푸시도 이미 되어 있다면, 특별한 이유가 없는 한 여기까지 이어가는 것을 기본 흐름으로 봅니다.
 
