@@ -11,7 +11,8 @@
 - 격리 작업 공간 생성
 - 검증 실행
 - PR 생성
-- 병합 실행
+- PR 병합
+- 로컬 병합
 - 저장소 퍼블리시 및 복구
 
 위 흐름을 명령으로 고정해 두면, 에이전트와 사람이 같은 루틴을 따르기 쉬워집니다.
@@ -24,7 +25,7 @@
 4. 워크트리 생성
 5. 구현 및 검증
 6. PR 생성
-7. 병합
+7. PR 병합 또는 로컬 병합
 8. 계획 완료 처리
 9. 작업 요청서 완료 처리
 10. 저장소 퍼블리시 또는 복구
@@ -108,7 +109,19 @@ scripts/create-pr.sh "chore: add repository publish recovery workflow" main docs
 - 현재 브랜치가 원격에 push 되어 있어야 합니다.
 - 기본 PR 본문 템플릿은 `docs/templates/pr-template.md`입니다.
 
-### 병합
+### PR 병합
+
+```bash
+scripts/merge-pr.sh chore/repo-bootstrap-recovery squash
+```
+
+설명:
+
+- GitHub PR을 `merge`, `squash`, `rebase` 중 하나로 병합합니다.
+- 기본값은 `squash`입니다.
+- 병합 후 원격 브랜치를 삭제합니다.
+
+### 로컬 병합
 
 ```bash
 scripts/merge-task.sh task/add-author-field main

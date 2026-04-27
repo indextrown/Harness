@@ -56,6 +56,7 @@
 - `docs/product-specs/index.md`: 제품 명세 인덱스
 - `docs/templates/issue-template.md`: 이슈 본문 템플릿
 - `docs/templates/pr-template.md`: PR 본문 템플릿
+- `docs/templates/review-response-template.md`: 리뷰 응답 메모 템플릿
 - `docs/templates/spec-template.md`: 제품 또는 기능 명세 템플릿
 - `docs/templates/task-brief-template.md`: 역할별 작업 브리프 템플릿
 - `docs/templates/task-request-template.md`: 작업 요청서 템플릿
@@ -106,6 +107,7 @@
 - 작업 브랜치 확인: `scripts/check-worktree.sh`
 - 기본 검증: `scripts/verify-task.sh`
 - PR 생성: `scripts/create-pr.sh <title> [base-branch] [body-file]`
+- PR 병합: `scripts/merge-pr.sh <pr-number|pr-url|branch> [merge|squash|rebase]`
 - 계획 완료 처리: `scripts/complete-plan.sh <active-plan-path>`
 - 작업 요청서 완료 처리: `scripts/complete-task-request.sh <active-task-request-path>`
 - 훅 설치: `scripts/install-hooks.sh`
