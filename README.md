@@ -76,6 +76,41 @@
 7. `scripts/`의 검증 스크립트나 체크 스크립트로 규칙을 강제합니다.
 8. 완료 후 결과와 교훈을 계획 또는 설계 문서에 반영합니다.
 
+## push, PR, merge 정책
+
+- 원격 `push`는 사용자가 명시적으로 요청했을 때만 수행합니다.
+- 작업 브랜치에서 커밋이 끝났고 원격 푸시도 이미 되어 있다면, 특별한 이유가 없는 한 PR 생성까지 이어가는 것을 기본 흐름으로 봅니다.
+- `merge`는 사용자가 명시적으로 요청했을 때만 수행합니다.
+- 사용자가 `merge해`라고 명시적으로 요청하면, 필요 시 커밋, push, PR 생성, PR 병합, 브랜치 정리까지 포함한 상위 요청으로 해석합니다.
+
+## 브랜치 정리 규칙
+
+- PR 병합이 끝나면 원격 작업 브랜치를 삭제합니다.
+- 로컬 작업 브랜치도 삭제합니다.
+- 병합 후 로컬 작업 위치는 항상 `main` 브랜치로 되돌립니다.
+- 다음 작업은 새 브랜치 또는 워크트리에서 다시 시작합니다.
+
+## 이슈와 PR 작성 원칙
+
+- 이슈에는 현재 문제, 기대 결과, 제약, 검증 방법을 실제 맥락 기준으로 구체적으로 적습니다.
+- PR에는 왜 바뀌는지, 무엇이 바뀌는지, 어떻게 검증했는지를 실제 실행 결과 기준으로 적습니다.
+- 템플릿 예시 문구를 그대로 둔 상태로 이슈나 PR을 만들지 않습니다.
+- `scripts/create-issue.sh`, `scripts/create-pr.sh`는 기본 템플릿 문구가 남아 있으면 생성 자체를 실패시킵니다.
+
+## 자주 쓰는 명령
+
+```bash
+scripts/create-task-request.sh 2026-04-28 add-author-field
+scripts/create-plan.sh 2026-04-28 add-author-field
+scripts/create-worktree.sh task/add-author-field ../Harness-add-author-field
+scripts/verify-task.sh
+scripts/create-pr.sh "chore: add author field" main docs/templates/pr-template.md
+scripts/merge-pr.sh chore/add-author-field squash main
+scripts/publish-repo.sh indextrown/Harness private
+```
+
+명령 상세 설명은 `docs/COMMANDS.md`를 참고합니다.
+
 ## 구현 파일 배치 원칙
 
 - 기능 코드와 앱 코드는 루트에 직접 추가하지 않습니다.
