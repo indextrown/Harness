@@ -10,7 +10,10 @@
 - 계획 생성
 - 격리 작업 공간 생성
 - 검증 실행
-- 병합 실행
+- PR 생성
+- PR 병합
+- 로컬 병합
+- 저장소 퍼블리시 및 복구
 
 위 흐름을 명령으로 고정해 두면, 에이전트와 사람이 같은 루틴을 따르기 쉬워집니다.
 
@@ -21,9 +24,11 @@
 3. 계획 생성
 4. 워크트리 생성
 5. 구현 및 검증
-6. 병합
-7. 계획 완료 처리
-8. 작업 요청서 완료 처리
+6. PR 생성
+7. PR 병합 또는 로컬 병합
+8. 계획 완료 처리
+9. 작업 요청서 완료 처리
+10. 저장소 퍼블리시 또는 복구
 
 ## 명령 목록
 
@@ -91,7 +96,32 @@ scripts/verify-task.sh
 - 현재는 하네스 저장소 기본 구조만 점검합니다.
 - 앱 코드가 생기면 린트, 테스트, 빌드 명령을 여기에 추가합니다.
 
-### 병합
+### PR 생성
+
+```bash
+scripts/create-pr.sh "chore: add repository publish recovery workflow" main docs/templates/pr-template.md
+```
+
+설명:
+
+- 작업 브랜치에서만 실행합니다.
+- 워킹트리가 깨끗해야 합니다.
+- 현재 브랜치가 원격에 push 되어 있어야 합니다.
+- 기본 PR 본문 템플릿은 `docs/templates/pr-template.md`입니다.
+
+### PR 병합
+
+```bash
+scripts/merge-pr.sh chore/repo-bootstrap-recovery squash
+```
+
+설명:
+
+- GitHub PR을 `merge`, `squash`, `rebase` 중 하나로 병합합니다.
+- 기본값은 `squash`입니다.
+- 병합 후 원격 브랜치를 삭제합니다.
+
+### 로컬 병합
 
 ```bash
 scripts/merge-task.sh task/add-author-field main
@@ -135,8 +165,19 @@ scripts/install-hooks.sh
 - `.githooks/` 아래 기본 훅을 Git에 연결합니다.
 - 현재는 `pre-commit`에서 메인 브랜치 작업과 기본 검증을 막는 골격입니다.
 
+### 저장소 퍼블리시 또는 복구
+
+```bash
+scripts/publish-repo.sh indextrown/Harness private
+```
+
+설명:
+
+- 로컬 Git 초기화, 훅 설치, 첫 커밋, GitHub 레포 생성, 원격 설정, 푸시를 한 번에 처리합니다.
+- 원격 레포가 삭제된 경우에도 같은 명령으로 다시 만들 수 있습니다.
+- 자세한 설명은 `docs/REPOSITORY_BOOTSTRAP.md`를 읽습니다.
+
 ## 나중에 추가할 만한 명령
 
 - 커밋 메시지 규칙 검사
-- PR 생성 스크립트
 - 스크린샷과 로그 아카이브 스크립트
