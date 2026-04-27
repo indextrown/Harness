@@ -1,5 +1,9 @@
 #!/usr/bin/env sh
 
+# GitHub 이슈를 생성합니다.
+# 사용법: scripts/create-issue.sh <title> <body-file>
+# 예시: scripts/create-issue.sh "작성자 정보 추가" docs/templates/issue-template.md
+
 set -eu
 
 if [ "$#" -lt 2 ]; then

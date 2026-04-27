@@ -1,5 +1,9 @@
 #!/usr/bin/env sh
 
+# GitHub PR을 병합하고 로컬을 main으로 정리합니다.
+# 사용법: scripts/merge-pr.sh <pr-number|pr-url|branch> [merge|squash|rebase] [base-branch]
+# 예시: scripts/merge-pr.sh chore/repo-bootstrap-recovery squash main
+
 set -eu
 
 usage() {

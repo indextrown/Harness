@@ -1,5 +1,9 @@
 #!/usr/bin/env sh
 
+# 활성 실행 계획을 completed 디렉터리로 이동합니다.
+# 사용법: scripts/complete-plan.sh <active-plan-path>
+# 예시: scripts/complete-plan.sh docs/exec-plans/active/2026-04-28-add-author-field.md
+
 set -eu
 
 if [ "$#" -lt 1 ]; then

@@ -1,5 +1,9 @@
 #!/usr/bin/env sh
 
+# 로컬 작업 브랜치를 베이스 브랜치에 병합합니다.
+# 사용법: scripts/merge-task.sh <branch-name> [base-branch]
+# 예시: scripts/merge-task.sh task/add-author-field main
+
 set -eu
 
 if [ "$#" -lt 1 ]; then

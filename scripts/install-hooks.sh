@@ -1,5 +1,9 @@
 #!/usr/bin/env sh
 
+# Git hooks 경로를 .githooks로 설정합니다.
+# 사용법: scripts/install-hooks.sh
+# 예시: scripts/install-hooks.sh
+
 set -eu
 
 if ! command -v git >/dev/null 2>&1; then

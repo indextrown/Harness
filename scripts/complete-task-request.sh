@@ -1,5 +1,9 @@
 #!/usr/bin/env sh
 
+# 활성 작업 요청서를 completed 디렉터리로 이동합니다.
+# 사용법: scripts/complete-task-request.sh <active-task-request-path>
+# 예시: scripts/complete-task-request.sh docs/task-requests/active/2026-04-28-add-author-field.md
+
 set -eu
 
 if [ "$#" -lt 1 ]; then
