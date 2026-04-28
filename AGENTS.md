@@ -127,13 +127,11 @@
 - 작업 요청서 완료 처리: `scripts/complete-task-request.sh <active-task-request-path>`
 - 훅 설치: `scripts/install-hooks.sh`
 - 저장소 퍼블리시 또는 복구: `scripts/publish-repo.sh <owner/repo|repo> [private|public]`
-
 이슈 및 PR 작성 규칙:
 
 - 이슈에는 현재 문제, 기대 결과, 제약, 검증 방법을 실제 맥락 기준으로 적습니다.
 - PR에는 왜 바뀌는지, 무엇이 바뀌는지, 어떻게 검증했는지를 실제 실행 결과 기준으로 적습니다.
 - 템플릿 예시 문구를 그대로 둔 상태로 이슈나 PR을 만들지 않습니다.
-
 브랜치 정리 규칙:
 
 - 원격 `push`는 사용자가 명시적으로 요청했을 때만 수행합니다.
