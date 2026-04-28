@@ -120,6 +120,7 @@
 - 워크트리 생성: `scripts/create-worktree.sh <branch> <path>`
 - 작업 브랜치 확인: `scripts/check-worktree.sh`
 - 기본 검증: `scripts/verify-task.sh`
+- 로그 세션 공용 함수: `scripts/log-session.sh`
 - PR 생성: `scripts/create-pr.sh <title> [base-branch] [body-file]`
 - PR 병합: `scripts/merge-pr.sh <pr-number|pr-url|branch> [merge|squash|rebase] [base-branch]`
 - 계획 완료 처리: `scripts/complete-plan.sh <active-plan-path>`
@@ -148,6 +149,7 @@
 
 - 하네스 엔지니어링 업데이트가 있었다면 `AGENTS.md`를 먼저 확인하고 최신 구조에 맞게 갱신합니다.
 - 동작, 아키텍처, 운영 가정이 바뀌면 문서를 갱신합니다.
+- 검증 스크립트가 로그를 남기도록 바뀌면 `logs/` 위치와 파일 규칙 문서도 함께 갱신합니다.
 - 같은 내용을 반복 복제하기보다 색인과 교차 링크를 선호합니다.
 - 오래된 문서는 상충하는 새 문서를 덧씌우지 말고 기존 문서를 직접 갱신합니다.
 - 외부에서 반복해서 참고하는 자료는 `docs/REFERENCES.md`에 정리합니다.
