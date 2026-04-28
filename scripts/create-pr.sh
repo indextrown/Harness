@@ -6,6 +6,23 @@
 
 set -eu
 
+validate_pr_title() {
+  title="$1"
+  pattern='^(feat|fix|chore|docs|refactor|test|style|perf|ci|build)(\([a-z0-9._/-]+\))?: [^[:space:]].+$'
+
+  if ! printf '%s\n' "$title" | grep -Eq "$pattern"; then
+    echo "PR 제목 형식이 올바르지 않습니다: $title" >&2
+    echo "허용 형식: type: subject 또는 type(scope): subject" >&2
+    echo "예시: chore: document merge workflow" >&2
+    exit 1
+  fi
+
+  if printf '%s\n' "$title" | grep -Eq ' \(#[0-9]+\)$'; then
+    echo "PR 제목 끝에 (#번호)를 직접 붙이지 마세요. squash 병합 시 자동으로 붙입니다: $title" >&2
+    exit 1
+  fi
+}
+
 validate_body_file() {
   file="$1"
 
@@ -67,6 +84,7 @@ if [ ! -f "$body_file" ]; then
   exit 1
 fi
 
+validate_pr_title "$title"
 validate_body_file "$body_file"
 if [ -n "$(git status --porcelain)" ]; then
   echo "워킹트리가 깨끗하지 않습니다. 커밋 후 PR을 생성하세요." >&2
