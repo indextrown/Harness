@@ -20,6 +20,7 @@
 ## 어디에 남기나
 
 - 기본 위치는 `logs/`
+- 작업 브랜치 단위 세션 로그 포인터는 `logs/.sessions/`
 - 장기 보관이 필요한 설계 수준 교훈은 `docs/`로 승격
 
 ## 무엇을 남기지 않나
@@ -37,5 +38,6 @@
 ## 파일명 규칙
 
 - `YYYY-MM-DD-task-slug-summary.log`
+- `YYYY-MM-DD-branch-name-session.log`
 - `YYYY-MM-DD-task-slug-screenshot.png`
 - `YYYY-MM-DD-task-slug-result.json`

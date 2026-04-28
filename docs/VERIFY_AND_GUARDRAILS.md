@@ -46,6 +46,7 @@
 - `scripts/create-worktree.sh`
 - `scripts/check-worktree.sh`
 - `scripts/verify-task.sh`
+- `scripts/log-session.sh`
 - `scripts/merge-task.sh`
 - `logs/README.md`
 
