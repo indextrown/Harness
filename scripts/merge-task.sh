@@ -1,14 +1,15 @@
 #!/usr/bin/env sh
 
-# 로컬 작업 브랜치를 베이스 브랜치에 병합합니다.
-# 사용법: scripts/merge-task.sh <branch-name> [base-branch]
-# 예시: scripts/merge-task.sh task/add-author-field main
+# 로컬 작업 브랜치를 베이스 브랜치에 예외적으로 병합합니다.
+# 기본 경로는 PR 생성 후 scripts/merge-pr.sh 를 사용하는 것입니다.
+# 사용법: HARNESS_ALLOW_LOCAL_MERGE=1 scripts/merge-task.sh <branch-name> [base-branch]
+# 예시: HARNESS_ALLOW_LOCAL_MERGE=1 scripts/merge-task.sh task/add-author-field main
 
 set -eu
 
 if [ "$#" -lt 1 ]; then
-  echo "사용법: scripts/merge-task.sh <branch-name> [base-branch]" >&2
-  echo "예시: scripts/merge-task.sh task/add-author-field main" >&2
+  echo "사용법: HARNESS_ALLOW_LOCAL_MERGE=1 scripts/merge-task.sh <branch-name> [base-branch]" >&2
+  echo "예시: HARNESS_ALLOW_LOCAL_MERGE=1 scripts/merge-task.sh task/add-author-field main" >&2
   exit 1
 fi
 
@@ -33,5 +34,12 @@ if [ "$current_branch" != "$base_branch" ]; then
   exit 1
 fi
 
+if [ "${HARNESS_ALLOW_LOCAL_MERGE:-0}" != "1" ]; then
+  echo "로컬 직접 병합은 기본적으로 금지됩니다." >&2
+  echo "먼저 작업 브랜치를 push 하고 PR을 만든 뒤 scripts/merge-pr.sh 로 squash 병합하세요." >&2
+  echo "정말 예외 복구가 필요할 때만 HARNESS_ALLOW_LOCAL_MERGE=1 로 실행할 수 있습니다." >&2
+  exit 1
+fi
+
 git merge --no-ff "$branch_name"
-echo "병합 완료: $branch_name -> $base_branch"
+echo "예외 로컬 병합 완료: $branch_name -> $base_branch"
