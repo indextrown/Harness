@@ -187,7 +187,15 @@ scripts/install-hooks.sh
 설명:
 
 - `.githooks/` 아래 기본 훅을 Git에 연결합니다.
-- 현재는 `pre-commit`에서 메인 브랜치 작업과 기본 검증을 막는 골격입니다.
+- 현재는 `pre-commit`에서 메인 브랜치 작업과 기본 검증을 막고, `commit-msg`에서 커밋 타입 형식을 검사합니다.
+
+## 커밋 메시지 규칙
+
+- 기본 형식은 `type: subject` 또는 `type(scope): subject`입니다.
+- 권장 타입은 `feat`, `fix`, `chore`, `docs`, `refactor`, `test`, `style`, `perf`, `ci`, `build`입니다.
+- 예시: `feat: add task request template`
+- 예시: `chore(hooks): enforce commit message format`
+- 병합 커밋과 `Revert` 커밋은 훅 검사 예외입니다.
 
 ### 저장소 퍼블리시 또는 복구
 

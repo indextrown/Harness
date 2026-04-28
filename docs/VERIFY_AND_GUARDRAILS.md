@@ -33,6 +33,11 @@
 - 실패 시 로그를 남긴다
 - UI 작업이면 스크린샷 또는 상태 증거를 남긴다
 
+### 5. 커밋 규칙 강제
+
+- 커밋 메시지는 정해진 타입 형식을 통과해야 한다
+- 병합 커밋 같은 예외만 제한적으로 허용한다
+
 ## 권장 구현 위치
 
 - 실행 스크립트: `scripts/`
@@ -48,6 +53,7 @@
 - `scripts/verify-task.sh`
 - `scripts/log-session.sh`
 - `scripts/merge-task.sh`
+- `.githooks/commit-msg`
 - `logs/README.md`
 
 이 스크립트들은 아직 프로젝트별 명령을 모르므로 최소 골격만 제공합니다. 실제 앱 코드가 생기면 명령을 채워 넣어야 합니다.
