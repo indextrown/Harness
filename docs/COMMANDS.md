@@ -124,6 +124,8 @@ scripts/create-pr.sh "chore: add repository publish recovery workflow" main docs
 - 워킹트리가 깨끗해야 합니다.
 - 현재 브랜치가 원격에 push 되어 있어야 합니다.
 - 기본 PR 본문 템플릿은 `docs/templates/pr-template.md`입니다.
+- PR 제목은 `type: subject` 또는 `type(scope): subject` 형식이어야 합니다.
+- PR 제목 끝에 `(#번호)`는 직접 붙이지 않습니다. squash 병합 시 스크립트가 자동으로 붙입니다.
 - 템플릿 기본 문구가 그대로 남아 있으면 생성이 실패합니다.
 - 원격 push 자체는 사용자가 명시적으로 요청했을 때만 수행합니다.
 - 작업 브랜치에서 커밋이 끝났고 원격 푸시도 이미 되어 있다면, 특별한 이유가 없는 한 여기까지 이어가는 것을 기본 흐름으로 봅니다.
@@ -131,13 +133,13 @@ scripts/create-pr.sh "chore: add repository publish recovery workflow" main docs
 ### PR 병합
 
 ```bash
-scripts/merge-pr.sh chore/repo-bootstrap-recovery squash main
+scripts/merge-pr.sh chore/repo-bootstrap-recovery main
 ```
 
 설명:
 
-- GitHub PR을 `merge`, `squash`, `rebase` 중 하나로 병합합니다.
-- 기본값은 `squash`입니다.
+- GitHub PR은 항상 squash로 병합합니다.
+- 최종 병합 커밋 제목은 자동으로 `PR 제목 (#PR번호)` 형식으로 만듭니다.
 - 병합 후 원격 브랜치를 삭제합니다.
 - 이어서 로컬에서 `main`으로 자동 이동합니다.
 - 기존 작업 브랜치는 로컬에서도 자동 삭제합니다.

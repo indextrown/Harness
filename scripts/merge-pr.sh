@@ -1,14 +1,14 @@
 #!/usr/bin/env sh
 
-# GitHub PR을 병합하고 로컬을 main으로 정리합니다.
-# 사용법: scripts/merge-pr.sh <pr-number|pr-url|branch> [merge|squash|rebase] [base-branch]
-# 예시: scripts/merge-pr.sh chore/repo-bootstrap-recovery squash main
+# GitHub PR을 squash 병합하고 로컬을 main으로 정리합니다.
+# 사용법: scripts/merge-pr.sh <pr-number|pr-url|branch> [base-branch]
+# 예시: scripts/merge-pr.sh chore/repo-bootstrap-recovery main
 
 set -eu
 
 usage() {
-  echo "사용법: scripts/merge-pr.sh <pr-number|pr-url|branch> [merge|squash|rebase] [base-branch]" >&2
-  echo "예시: scripts/merge-pr.sh chore/repo-bootstrap-recovery squash main" >&2
+  echo "사용법: scripts/merge-pr.sh <pr-number|pr-url|branch> [base-branch]" >&2
+  echo "예시: scripts/merge-pr.sh chore/repo-bootstrap-recovery main" >&2
   exit 1
 }
 
@@ -17,16 +17,7 @@ if [ "$#" -lt 1 ]; then
 fi
 
 target="$1"
-merge_mode="${2:-squash}"
-base_branch="${3:-main}"
-
-case "$merge_mode" in
-  merge|squash|rebase) ;;
-  *)
-    echo "머지 방식은 merge, squash, rebase 중 하나여야 합니다: $merge_mode" >&2
-    exit 1
-    ;;
-esac
+base_branch="${2:-main}"
 
 if ! command -v gh >/dev/null 2>&1; then
   echo "GitHub CLI(gh)가 설치되어 있지 않습니다." >&2
@@ -54,17 +45,11 @@ if [ "$current_branch" = "$base_branch" ]; then
   echo "현재 브랜치가 이미 베이스 브랜치입니다: $base_branch" >&2
 fi
 
-case "$merge_mode" in
-  merge)
-    gh pr merge "$target" --merge --delete-branch
-    ;;
-  squash)
-    gh pr merge "$target" --squash --delete-branch
-    ;;
-  rebase)
-    gh pr merge "$target" --rebase --delete-branch
-    ;;
-esac
+pr_title="$(gh pr view "$target" --json title --jq '.title')"
+pr_number="$(gh pr view "$target" --json number --jq '.number')"
+merge_subject="${pr_title} (#${pr_number})"
+
+gh pr merge "$target" --squash --subject "$merge_subject" --delete-branch
 
 git fetch origin "$base_branch"
 git switch "$base_branch"
@@ -74,4 +59,4 @@ if [ "$current_branch" != "$base_branch" ]; then
   git branch -D "$current_branch" >/dev/null 2>&1 || true
 fi
 
-echo "병합 후 정리 완료: 원격 브랜치 삭제 요청, 로컬 main 복귀, 작업 브랜치 삭제"
+echo "병합 후 정리 완료: squash 병합, 원격 브랜치 삭제 요청, 로컬 main 복귀, 작업 브랜치 삭제"
