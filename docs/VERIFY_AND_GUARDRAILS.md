@@ -42,6 +42,7 @@
 
 - PR 병합은 squash만 허용한다
 - 최종 병합 커밋 제목은 `type: subject (#PR번호)` 형식을 사용한다
+- 정상적인 병합 경로에서는 PR 생성이 선행되지 않으면 병합하지 않는다
 
 ## 권장 구현 위치
 
@@ -58,6 +59,7 @@
 - `scripts/verify-task.sh`
 - `scripts/log-session.sh`
 - `scripts/merge-task.sh`
+- `scripts/merge-pr.sh`
 - `.githooks/commit-msg`
 - `logs/README.md`
 

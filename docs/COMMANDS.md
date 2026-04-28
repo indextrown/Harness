@@ -128,7 +128,7 @@ scripts/create-pr.sh "chore: add repository publish recovery workflow" main docs
 - PR 제목 끝에 `(#번호)`는 직접 붙이지 않습니다. squash 병합 시 스크립트가 자동으로 붙입니다.
 - 템플릿 기본 문구가 그대로 남아 있으면 생성이 실패합니다.
 - 원격 push 자체는 사용자가 명시적으로 요청했을 때만 수행합니다.
-- 작업 브랜치에서 커밋이 끝났고 원격 푸시도 이미 되어 있다면, 특별한 이유가 없는 한 여기까지 이어가는 것을 기본 흐름으로 봅니다.
+- 작업 브랜치에서 커밋이 끝났고 원격 푸시도 이미 되어 있다면, 특별한 이유가 없는 한 반드시 여기까지 이어가는 것을 기본 흐름으로 봅니다.
 
 ### PR 병합
 
@@ -147,14 +147,17 @@ scripts/merge-pr.sh chore/repo-bootstrap-recovery main
 - 사용자가 `merge해`라고 요청했다면, 아직 병합되지 않은 브랜치 병합과 병합 완료 브랜치 정리도 함께 처리할 수 있습니다.
 - 필요하면 커밋, push, PR 생성까지 같은 흐름에서 함께 처리할 수 있습니다.
 
-### 로컬 병합
+### 예외 로컬 병합
 
 ```bash
-scripts/merge-task.sh task/add-author-field main
+HARNESS_ALLOW_LOCAL_MERGE=1 scripts/merge-task.sh task/add-author-field main
 ```
 
 설명:
 
+- 기본 경로가 아니라 복구용 예외 절차입니다.
+- 정상 흐름에서는 PR을 먼저 만든 뒤 `scripts/merge-pr.sh`로 squash 병합해야 합니다.
+- 정말 예외적인 상황에서만 환경 변수 `HARNESS_ALLOW_LOCAL_MERGE=1`을 주고 실행합니다.
 - 베이스 브랜치에서 실행해야 합니다.
 - 기본값은 `main`입니다.
 
