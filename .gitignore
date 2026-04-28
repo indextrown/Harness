@@ -2,6 +2,7 @@
 
 # Logs and runtime output
 logs/*.log
+logs/.sessions/
 logs/*.json
 logs/*.png
 logs/*.jpg
