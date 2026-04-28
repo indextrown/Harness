@@ -20,7 +20,6 @@ validate_body_file() {
     exit 1
   fi
 }
-
 usage() {
   echo "사용법: scripts/create-pr.sh <title> [base-branch] [body-file]" >&2
   echo "예시: scripts/create-pr.sh \"chore: add repository publish recovery workflow\" main docs/templates/pr-template.md" >&2
@@ -69,7 +68,6 @@ if [ ! -f "$body_file" ]; then
 fi
 
 validate_body_file "$body_file"
-
 if [ -n "$(git status --porcelain)" ]; then
   echo "워킹트리가 깨끗하지 않습니다. 커밋 후 PR을 생성하세요." >&2
   exit 1

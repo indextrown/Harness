@@ -3,7 +3,6 @@
 # 로컬 저장소를 GitHub 레포로 퍼블리시하거나 복구합니다.
 # 사용법: scripts/publish-repo.sh <owner/repo|repo> [private|public]
 # 예시: scripts/publish-repo.sh indextrown/Harness private
-
 set -eu
 
 usage() {
